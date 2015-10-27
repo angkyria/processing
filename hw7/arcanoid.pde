@@ -21,7 +21,7 @@ float posX=0;
   }
   
   ball = new Ball(width/2,height-15, 10, random(-3.0,3.0),-1);
-  slider = new Slider(width/2,height,50,10);
+  slider = new Slider(width/2,height,200,10);
 }
 
 void draw()
@@ -33,23 +33,48 @@ void draw()
     {
       if(bricks[j][i].on == true)
       {
-        bricks[j][i].check(ball);
-       bricks[j][i].draw();
+        if(second()%8==0){
+          bricks[j][i].check(ball);
+          bricks[j][i].draw(5);
+        }else{
+          bricks[j][i].check(ball);
+          bricks[j][i].draw(0);
+        }
       }
     }
   }
-  
-  ball.draw();
+  if((second()%5==0)){
+    ball.draw(5);
+  }else{
+    ball.draw(0);
+  }
+  //ball.draw();
   ball.bounce();
-  slider.draw(posX);
+  if((second()%15)==0){
+    slider.draw(posX,0.1);
+  }else{
+    slider.draw(posX,0);
+  }
   slider.check(ball,posX);
+}
+
+void accelerate(){
+  if(second()%15==0)ball.accelerate(1);
+  if(second()%2==0)ball.accelerate(2);
+  
 }
 
 void keyPressed()
 {
   if (key == CODED)
   {
-    if (keyCode == LEFT) posX = posX-20;
-    if(keyCode == RIGHT) posX = posX+20;
+    if (keyCode == LEFT) {
+      posX = posX-20;
+      
+    }
+    if(keyCode == RIGHT) {
+      posX = posX+20;
+      
+    }
   }
 }

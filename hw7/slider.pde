@@ -11,9 +11,11 @@ class Slider
     s_height = sh;
   }
   
-  void draw(float px)
+  void draw(float px, float time)
   {
+    fill(255);
     rectMode(CENTER);
+    s_length = s_length - time;
     rect(x+px, y-(s_height/2), s_length, s_height); 
   }
   

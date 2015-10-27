@@ -4,6 +4,9 @@ class Brick
   float w,h;
   color c;
   boolean on = true;
+  float r = random(150);
+  float g = random(255);
+  float b = random(200);
   
   Brick(float bx, float by, float bw, float bh, color col)
   {
@@ -11,15 +14,23 @@ class Brick
     y = by;
     w = bw;
     h = bh;
-    c= col;
+    c=col;
   }
   
-  void draw()
+  void draw(int k)
   {
     rectMode(CORNER);
+    if(k==5){
+      r = random(0,255);
+      g = random(0,250);
+      b = random(0,255);
+      c = color(r,g,b);
+    }
     fill(c);
     rect(x,y,w,h);
   }
+  
+  
   
   void check(Ball b)
   {
